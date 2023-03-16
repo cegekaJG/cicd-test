@@ -5,6 +5,9 @@
     },
     {
       "path": "CICD Test App"
+    },
+    {
+      "path": "CICD Test App.Test"
     }
   ]
 }
