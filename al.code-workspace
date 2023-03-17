@@ -8,6 +8,9 @@
     },
     {
       "path": "CICD Test App.Test"
+    },
+    {
+      "path": "CICD Test App.PerformanceTest"
     }
   ]
 }
