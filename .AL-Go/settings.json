@@ -2,5 +2,7 @@
   "country": "at",
   "appFolders": [],
   "testFolders": [],
-  "bcptTestFolders": []
+  "bcptTestFolders": [],
+  "enableCodeCop": true,
+  "enableUICop": true
 }
