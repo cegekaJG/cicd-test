@@ -4,5 +4,6 @@
   "testFolders": [],
   "bcptTestFolders": [],
   "enableCodeCop": true,
-  "enableUICop": true
+  "enableUICop": true,
+  "repoVersion": "1.1"
 }
