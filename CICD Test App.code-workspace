@@ -1,13 +1,7 @@
 {
   "folders": [
     {
-      "path": "CICD Test App"
-    },
-    {
-      "path": "CICD Test App.Test"
-    },
-    {
-      "path": "CICD Test App.PerformanceTest"
+      "path": "."
     }
   ],
   "settings": {
@@ -59,6 +53,17 @@
     "CRS.RemoveSuffixFromFilename": true,
     "CRS.RenameWithGit": true,
     "files.autoSave": "afterDelay",
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      "**/.snapshots": true,
+      "**/.AL-Go": true,
+      "**/.github": true
+    },
     "githubPullRequests.assignCreated": "${user}",
     "githubPullRequests.defaultMergeMethod": "squash",
     "githubPullRequests.pullBranch": "always",
