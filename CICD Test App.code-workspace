@@ -1,7 +1,13 @@
 {
   "folders": [
     {
-      "path": "."
+      "path": "CICD Test App"
+    },
+    {
+      "path": "CICD Test App.Test"
+    },
+    {
+      "path": "CICD Test App.PerformanceTest"
     }
   ],
   "settings": {
