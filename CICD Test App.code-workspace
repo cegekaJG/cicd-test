@@ -26,9 +26,10 @@
     "alOutline.addDataItemToReportColumnName": true,
     "alOutline.addToolTipsToPageFields": true,
     "alOutline.codeActionsOnSave": [
-        "SortVariables",
-        "SortProperties",
-        "FormatDocument"
+      "SortVariables",
+      "SortProperties",
+      "FormatDocument",
+      "SortPermissions"
     ],
     "alOutline.codeCleanupActions": [
         "AddApplicationAreas",
@@ -55,10 +56,26 @@
     "CRS.FileNamePatternExtensions": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
     "CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
     "CRS.ObjectNameSuffix": " CGK",
+    "CRS.OnSaveAlFileAction": "Reorganize",
     "CRS.RemovePrefixFromFilename": true,
     "CRS.RemoveSuffixFromFilename": true,
     "CRS.RenameWithGit": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modifications",
     "files.autoSave": "afterDelay",
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      "**/.snapshots": true,
+      "**/.AL-Go": true,
+      "**/.github": true,
+      ".vscode":true,
+      ".gitignore":true
+    },
     "githubPullRequests.assignCreated": "${user}",
     "githubPullRequests.defaultMergeMethod": "squash",
     "githubPullRequests.pullBranch": "always",
@@ -68,6 +85,7 @@
     ],
     "gitlens.advanced.fileHistoryFollowsRenames": true,
     "gitlens.blame.ignoreWhitespace": true,
+    "trailing-spaces.trimOnSave": true,
     "workbench.iconTheme": "vscode-icons"
   }
 }
