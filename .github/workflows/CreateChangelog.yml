@@ -11,18 +11,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.4.0
 
       - name: Build Changelog
+        id: github-changelog
         uses: mikepenz/release-changelog-builder-action@v3
         env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "Print changelog to console"
-        run: cat CHANGELOG.md
+        run: |
+          ls
+          echo ${{steps.github-changelog.outputs.changelog}} > CHANGELOG.MD
+          cat CHANGELOG.MD
 
       - name: "Upload changelog"
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: "Changelog"
-          path: CHANGELOG.md
+          path: CHANGELOG.MD
