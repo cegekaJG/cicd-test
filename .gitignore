@@ -7,11 +7,13 @@ Thumbs.db
 TestResults*.xml
 bcptTestResults*.json
 BuildOutput.txt
+launch.json
 rad.json
 .output/
 .dependencies/
 .buildartifacts/
 .alpackages/
+.altestrunner/
 .packages/
 .alcache/
 .altemplates/
