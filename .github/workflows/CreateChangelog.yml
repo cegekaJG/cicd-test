@@ -39,8 +39,8 @@ jobs:
 
       - name: Write changelog to file
         run: |
-          echo ${{steps.github-changelog.outputs.changelog}}
-          echo ${{steps.github-changelog.outputs.changelog}} > CHANGELOG.MD
+          cat >/etc/myconfig.conf <<${{steps.github-changelog.outputs.changelog}}
+          cat /etc/myconfig.conf
 
       - name: Upload changelog
         uses: actions/upload-artifact@v3.1.2
