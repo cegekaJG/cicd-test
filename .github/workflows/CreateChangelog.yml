@@ -34,7 +34,7 @@ jobs:
 
       - name: Commit changes
         run: |
-          git add CHANGELOG.MD
+          git add ./CHANGELOG.MD
           git commit -m "Add changelog"
         working-directory: .
 
@@ -49,4 +49,4 @@ jobs:
         uses: actions/upload-artifact@v3.1.2
         with:
           name: Changelog
-          path: CHANGELOG.MD
+          path: ./CHANGELOG.MD
