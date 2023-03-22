@@ -38,6 +38,10 @@ jobs:
           git commit -m "Add changelog"
         working-directory: .
 
+      - name: Check token permissions
+        run: |
+          curl -H "Authorization: token ${{ secrets.GHTOKENWORKFLOW }}" -H "Accept: application/vnd.github.v3+json" https://api.github.com/user/repos?per_page=1
+
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
         with:
