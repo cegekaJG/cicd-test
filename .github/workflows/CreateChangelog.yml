@@ -43,7 +43,7 @@ jobs:
         with:
           branch: ${{ github.ref }}
           directory: .
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GHTOKENWORKFLOW }}
 
       - name: Upload changelog
         uses: actions/upload-artifact@v3.1.2
