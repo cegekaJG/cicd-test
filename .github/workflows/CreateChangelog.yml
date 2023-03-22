@@ -16,16 +16,34 @@ jobs:
       - name: Build Changelog
         id: github-changelog
         uses: mikepenz/release-changelog-builder-action@v3
+        with:
+          configurationJson: |
+            {
+              "template": "#{{CHANGELOG}}\n\n<details>\n<summary>Uncategorized</summary>\n\n#{{UNCATEGORIZED}}\n</details>",
+              "categories": [
+                {
+                    "title": "## 💬 Other",
+                    "labels": ["other"]
+                },
+                {
+                    "title": "## 📦 Dependencies",
+                    "labels": ["dependencies"]
+                }
+              ]
+            }
         env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: "Print changelog to console"
+
+
+
+      - name: Write changelog to file
         run: |
           echo ${{steps.github-changelog.outputs.changelog}}
           echo ${{steps.github-changelog.outputs.changelog}} > CHANGELOG.MD
 
-      - name: "Upload changelog"
+      - name: Upload changelog
         uses: actions/upload-artifact@v3.1.2
         with:
-          name: "Changelog"
+          name: Changelog
           path: CHANGELOG.MD
