@@ -24,22 +24,20 @@ jobs:
       - name: Write changelog to file
         run: |
           delimiter=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 8)
-          cat > CHANGELOG.MD <<"$delimiter"
+          cat > ./CHANGELOG.md <<"$delimiter"
           ${{steps.github-changelog.outputs.changelog}}
           $delimiter
+          ls
         working-directory: .
-
-      - name: Checkout and configure Git
-        uses: actions/checkout@v2
 
       - name: Commit changes
         run: |
-          git add ./CHANGELOG.MD
+          git add ./CHANGELOG.md
           git commit -m "Add changelog"
         working-directory: .
 
       - name: Push changes
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@v0.6.0
         with:
           branch: ${{ github.ref }}
           directory: .
@@ -49,4 +47,4 @@ jobs:
         uses: actions/upload-artifact@v3.1.2
         with:
           name: Changelog
-          path: ./CHANGELOG.MD
+          path: ./CHANGELOG.md
