@@ -1,0 +1,52 @@
+{
+    "categories": [
+      {
+        "title": "## 🚀 Features",
+        "labels": ["feature"]
+      },
+      {
+        "title": "## 🐛 Fixes",
+        "labels": ["fix"]
+      },
+      {
+        "title": "## 🧪 Tests",
+        "labels": ["test"]
+      }
+    ],
+    "ignore_labels": [
+      "ignore"
+    ],
+    "sort": {
+      "order": "ASC",
+      "on_property": "mergedAt"
+    },
+    "template": "${{CHANGELOG}}\n\n<details>\n<summary>Other</summary>\n\n${{UNCATEGORIZED}}\n</details>",
+    "pr_template": "- ${{TITLE}}\n   - PR: #${{NUMBER}} by ${{ASSIGNEE}}",
+    "empty_template": "- no changes",
+    "label_extractor": [
+      {
+        "pattern": "(.) (.+)",
+        "target": "$1",
+        "flags": "gu"
+      },
+      {
+        "pattern": "\\[Issue\\]",
+        "on_property": "title",
+        "method": "match"
+      }
+    ],
+    "transformers": [
+      {
+        "pattern": "[\\-\\*] (\\[(...|TEST|CI|SKIP)\\])( )?(.+?)\n(.+?[\\-\\*] )(.+)",
+        "target": "- $4\n  - $6"
+      }
+    ],
+    "trim_values": false,
+    "tag_resolver": {
+      "method": "semver",
+      "filter": {
+        "pattern": "api-(.+)",
+        "flags": "gu"
+      }
+    }
+}
