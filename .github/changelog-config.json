@@ -41,12 +41,5 @@
         "target": "- $4\n  - $6"
       }
     ],
-    "trim_values": false,
-    "tag_resolver": {
-      "method": "semver",
-      "filter": {
-        "pattern": "api-(.+)",
-        "flags": "gu"
-      }
-    }
+    "trim_values": false
 }
