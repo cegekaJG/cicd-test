@@ -17,20 +17,7 @@ jobs:
         id: github-changelog
         uses: mikepenz/release-changelog-builder-action@v3
         with:
-          configurationJson: |
-            {
-              "template": "#{{CHANGELOG}}\n\n<details>\n<summary>Uncategorized</summary>\n\n#{{UNCATEGORIZED}}\n</details>",
-              "categories": [
-                {
-                    "title": "## 💬 Other",
-                    "labels": ["other"]
-                },
-                {
-                    "title": "## 📦 Dependencies",
-                    "labels": ["dependencies"]
-                }
-              ]
-            }
+          configuration: "./.github/changelog-config.json"
         env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -40,6 +27,23 @@ jobs:
           cat > CHANGELOG.MD <<"$delimiter"
           ${{steps.github-changelog.outputs.changelog}}
           $delimiter
+        working-directory: .
+
+      - name: Checkout and configure Git
+        uses: actions/checkout@v2
+
+      - name: Commit changes
+        run: |
+          git add CHANGELOG.MD
+          git commit -m "Add changelog"
+        working-directory: .
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: ${{ github.ref }}
+          directory: .
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload changelog
         uses: actions/upload-artifact@v3.1.2
