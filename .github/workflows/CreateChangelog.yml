@@ -5,14 +5,44 @@ on:
       - created
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
-  changelog:
-    runs-on: ubuntu-20.04
+  build:
+    name: "Changelog generation"
+    runs-on: ubuntu-18.04
     steps:
-      - name: "Generate release changelog"
-        uses: heinrichreimer/github-changelog-generator-action@v2.3
+      - name: "Checkout"
+        uses: actions/checkout@v2
+
+      - name: "Generate full changelog"
+        id: generate-full-changelog
+        uses: ./
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          headerLabel: "# Changelog"
+          breakingLabel: '### Breaking'
+          enhancementLabel: '### Enhancements'
+          bugsLabel: '### Bug fixes'
+          deprecatedLabel: '### Deprecations'
+          removedLabel: '### Removals'
+          securityLabel: '### Security'
+          issuesLabel: '### Other issues'
+          prLabel: '### Other pull requests'
+          addSections: '{"documentation":{"prefix":"### cumentation","labels":["documentation"]},"tests":{"prefix":"### Testing","labels":["tests"]}}'
+          issues: true
+          issuesWoLabels: true
+          pullRequests: true
+          prWoLabels: true
+          author: true
+          unreleased: true
+          compareLink: true
+          stripGeneratorNotice: true
+          verbose: true
+
+      - name: "Print changelog to console"
+        run: cat CHANGELOG.md
+
+      - name: "Upload changelog"
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: "Changelog"
+          path: CHANGELOG.md
