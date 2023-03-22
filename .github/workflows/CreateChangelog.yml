@@ -21,9 +21,8 @@ jobs:
 
       - name: "Print changelog to console"
         run: |
-          ls
+          echo ${{steps.github-changelog.outputs.changelog}}
           echo ${{steps.github-changelog.outputs.changelog}} > CHANGELOG.MD
-          cat CHANGELOG.MD
 
       - name: "Upload changelog"
         uses: actions/upload-artifact@v3.1.2
