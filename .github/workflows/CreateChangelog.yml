@@ -34,13 +34,12 @@ jobs:
         env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-
-
-
       - name: Write changelog to file
         run: |
-          cat >/etc/myconfig.conf <<${{steps.github-changelog.outputs.changelog}}
-          cat /etc/myconfig.conf
+          delimiter=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 8)
+          cat > CHANGELOG.MD <<"$delimiter"
+          ${{steps.github-changelog.outputs.changelog}}
+          $delimiter
 
       - name: Upload changelog
         uses: actions/upload-artifact@v3.1.2
