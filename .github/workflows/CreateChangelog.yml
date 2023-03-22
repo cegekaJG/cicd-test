@@ -10,34 +10,19 @@ jobs:
     name: Changelog generation
     runs-on: ubuntu-latest
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: Build Changelog
         uses: mikepenz/release-changelog-builder-action@v3
-        with:
-          configurationJson: |
-            {
-              "template": "#{{CHANGELOG}}\n\n<details>\n<summary>Uncategorized</summary>\n\n#{{UNCATEGORIZED}}\n</details>",
-              "categories": [
-                {
-                    "title": "## 💬 Other",
-                    "labels": ["other"]
-                },
-                {
-                    "title": "## 📦 Dependencies",
-                    "labels": ["dependencies"]
-                }
-              ]
-            }
         env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: "Print changelog to console"
-      #   run: cat CHANGELOG.md
+      - name: "Print changelog to console"
+        run: cat CHANGELOG.md
 
-      # - name: "Upload changelog"
-      #   uses: actions/upload-artifact@v1.0.0
-      #   with:
-      #     name: "Changelog"
-      #     path: CHANGELOG.md
+      - name: "Upload changelog"
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: "Changelog"
+          path: CHANGELOG.md
