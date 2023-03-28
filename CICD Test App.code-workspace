@@ -8,6 +8,12 @@
     },
     {
       "path": "CICD Test App.PerformanceTest"
+    },
+    {
+      "path": ".AL-Go"
+    },
+    {
+      "path": ".github"
     }
   ],
   "settings": {

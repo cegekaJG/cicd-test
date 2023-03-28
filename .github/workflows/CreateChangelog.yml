@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3.4.0
+        with:
+          token: ${{ secrets.GHTOKENWORKFLOW }}
+          ref: ${{ github.ref }}
 
       - name: Build Changelog
         id: github-changelog
@@ -32,8 +35,9 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --global user.name "Changelog Bot"
-          git config --global user.email "changelog@noreply.github.com"
+          ACTOR=$(echo "${{ github.actor }}" | sed 's/ /./g')
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${ACTOR}@users.noreply.github.com"
           git add ./CHANGELOG.md
           git commit -m "Add changelog"
         working-directory: .
