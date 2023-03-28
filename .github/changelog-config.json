@@ -21,7 +21,7 @@
       "on_property": "mergedAt"
     },
     "template": "${{CHANGELOG}}\n\nUnlabeled\n\n${{UNCATEGORIZED}}",
-    "pr_template": "- ${{TITLE}}\n   - PR: #${{NUMBER}} by ${{ASSIGNEES}}",
+    "pr_template": "- ${{TITLE}}\n   - PR: <${{URL}}> by ${{ASSIGNEES}}",
     "empty_template": "- no changes",
     "transformers": [
       {
