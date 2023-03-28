@@ -2,7 +2,7 @@
   "id": "f728fa76-fae0-4879-bc03-41847bee03ca",
   "name": "CI/CD Test App.PerformanceTest",
   "publisher": "Cegeka",
-  "version": "1.1.0.0",
+  "version": "1.2.0.0",
   "brief": "Performance Toolkit Samples (AT)",
   "description": "This extension provides tests that simulate business processes, such as creating sales orders, for the Business Central Performance Toolkit. Developers can use these to test for performance regressions during development.",
   "platform": "21.0.0.0",
