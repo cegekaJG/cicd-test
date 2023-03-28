@@ -1,16 +1,16 @@
 {
     "categories": [
       {
-        "title": "## 🚀 Features",
-        "labels": ["feature"]
+        "title": "## 🚀 Enhancements",
+        "labels": ["enhancement"]
       },
       {
         "title": "## 🐛 Fixes",
-        "labels": ["fix"]
+        "labels": ["bug"]
       },
       {
-        "title": "## 🧪 Tests",
-        "labels": ["test"]
+        "title": "## 📖 Documentation",
+        "labels": ["documentation"]
       }
     ],
     "ignore_labels": [
