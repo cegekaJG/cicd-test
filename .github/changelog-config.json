@@ -20,21 +20,9 @@
       "order": "ASC",
       "on_property": "mergedAt"
     },
-    "template": "${{CHANGELOG}}\n\n<details>\n<summary>Other</summary>\n\n${{UNCATEGORIZED}}\n</details>",
-    "pr_template": "- ${{TITLE}}\n   - PR: #${{NUMBER}} by ${{ASSIGNEE}}",
+    "template": "${{CHANGELOG}}\n\nUnlabeled\n\n${{UNCATEGORIZED}}",
+    "pr_template": "- ${{TITLE}}\n   - PR: #${{NUMBER}} by ${{ASSIGNEES}}",
     "empty_template": "- no changes",
-    "label_extractor": [
-      {
-        "pattern": "(.) (.+)",
-        "target": "$1",
-        "flags": "gu"
-      },
-      {
-        "pattern": "\\[Issue\\]",
-        "on_property": "title",
-        "method": "match"
-      }
-    ],
     "transformers": [
       {
         "pattern": "[\\-\\*] (\\[(...|TEST|CI|SKIP)\\])( )?(.+?)\n(.+?[\\-\\*] )(.+)",
