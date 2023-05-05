@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Cleanup Project",
+            "type": "process",
+            "command": "${command:azALDevTools.RunWorkspaceCodeCleanup}"
+        },
+        {
+            "label": "Reorganize Project",
+            "type": "process",
+            "command": "${command:crs.ReorganizeAllFiles}"
+        }
+    ]
+}
