@@ -6,5 +6,6 @@
   "enableCodeCop": true,
   "enableUICop": true,
   "doNotRunBcptTests": true,
-  "repoVersion": "1.2"
+  "repoVersion": "1.2",
+  "gitHubRunner": "self-hosted"
 }
