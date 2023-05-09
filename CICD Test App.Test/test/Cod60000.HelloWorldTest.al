@@ -23,4 +23,3 @@ codeunit 60000 "HelloWorld Test"
     var
         MessageDisplayed: Boolean;
 }
-

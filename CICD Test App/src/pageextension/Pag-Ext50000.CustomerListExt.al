@@ -9,4 +9,3 @@ pageextension 50000 "CustomerListExt" extends "Customer List"
         Message('App published: Hello world');
     end;
 }
-
