@@ -23,7 +23,7 @@ codeunit 61020 "BCPT Post Item Journal"
     var
         Item: Record Item;
     begin
-        if not Item.get('70000') then
+        if not Item.Get('70000') then
             Item.FindSet();
 
         CreateItemJournalLine(ItemJournalLine, Item."No.");
@@ -94,7 +94,7 @@ codeunit 61020 "BCPT Post Item Journal"
         ItemJournalLine.Init();
         ItemJournalLine.Validate("Journal Template Name", JournalTemplateName);
         ItemJournalLine.Validate("Journal Batch Name", JournalBatchName);
-        CODEUNIT.Run(CODEUNIT::"Item Jnl.-Post Batch", ItemJournalLine);
+        Codeunit.Run(Codeunit::"Item Jnl.-Post Batch", ItemJournalLine);
     end;
 
     procedure SelectItemJournalTemplateName(var ItemJournalTemplate: Record "Item Journal Template"; ItemJournalTemplateType: Enum "Item Journal Template Type")

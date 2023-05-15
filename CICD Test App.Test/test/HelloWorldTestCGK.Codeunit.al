@@ -1,4 +1,4 @@
-codeunit 60000 "HelloWorld Test"
+codeunit 60000 "HelloWorld TestCGK"
 {
     Subtype = Test;
 
@@ -6,12 +6,12 @@ codeunit 60000 "HelloWorld Test"
     [HandlerFunctions('HelloWorldMessageHandler')]
     procedure TestHelloWorldMessage()
     var
-        CustList: TestPage "Customer List";
+        recCustomerList: TestPage "Customer List";
     begin
-        CustList.OpenView();
-        CustList.Close();
+        recCustomerList.OpenView();
+        recCustomerList.Close();
         if (not MessageDisplayed) then
-            ERROR('Message was not displayed!');
+            Error('Message was not displayed!');
     end;
 
     [MessageHandler]

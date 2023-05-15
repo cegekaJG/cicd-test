@@ -4,10 +4,10 @@ codeunit 61008 "BCPT Make Web Call"
 
     trigger OnRun();
     var
-        NewUrl: text;
+        Client: HttpClient;
         RequestMessage: HttpRequestMessage;
         ResponseMessage: HttpResponseMessage;
-        Client: HttpClient;
+        NewUrl: Text;
     begin
         NewUrl := 'https://www.microsoft.com';
 

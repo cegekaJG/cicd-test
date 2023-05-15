@@ -4,7 +4,7 @@ codeunit 61005 "BCPT Create SQ with N Lines" implements "BCPT Test Param. Provid
 
     trigger OnRun();
     begin
-        If not IsInitialized then begin
+        if not IsInitialized then begin
             InitTest();
             IsInitialized := true;
         end;
@@ -20,13 +20,13 @@ codeunit 61005 "BCPT Create SQ with N Lines" implements "BCPT Test Param. Provid
 
     local procedure InitTest();
     var
-        SalesSetup: Record "Sales & Receivables Setup";
         NoSeriesLine: Record "No. Series Line";
+        SalesSetup: Record "Sales & Receivables Setup";
     begin
         SalesSetup.Get();
         SalesSetup.TestField("Quote Nos.");
         NoSeriesLine.SetRange("Series Code", SalesSetup."Quote Nos.");
-        NoSeriesLine.findset(true, true);
+        NoSeriesLine.FindSet(true, true);
         repeat
             if NoSeriesLine."Ending No." <> '' then begin
                 NoSeriesLine."Ending No." := '';
@@ -34,12 +34,12 @@ codeunit 61005 "BCPT Create SQ with N Lines" implements "BCPT Test Param. Provid
                 NoSeriesLine.Modify(true);
             end;
         until NoSeriesLine.Next() = 0;
-        commit();
+        Commit();
 
         if Evaluate(NoOfLinesToCreate, BCPTTestContext.GetParameter(NoOfLinesParamLbl)) then;
     end;
 
-    local procedure CreateSalesQuote(Var BCPTTestContext: Codeunit "BCPT Test Context")
+    local procedure CreateSalesQuote(var BCPTTestContext: Codeunit "BCPT Test Context")
     var
         Customer: Record Customer;
         Item: Record Item;
@@ -47,16 +47,16 @@ codeunit 61005 "BCPT Create SQ with N Lines" implements "BCPT Test Param. Provid
         SalesLine: Record "Sales Line";
         i: Integer;
     begin
-        if not Customer.get('10000') then
+        if not Customer.Get('10000') then
             Customer.FindFirst();
-        if not item.get('70000') then
+        if not Item.Get('70000') then
             Item.FindFirst();
         if NoOfLinesToCreate < 0 then
             NoOfLinesToCreate := 0;
         if NoOfLinesToCreate > 10000 then
             NoOfLinesToCreate := 10000;
         BCPTTestContext.StartScenario('Add Order');
-        SalesHeader.init();
+        SalesHeader.Init();
         SalesHeader."Document Type" := SalesHeader."Document Type"::Quote;
         SalesHeader.Insert(true);
         BCPTTestContext.EndScenario('Add Order');
@@ -94,7 +94,7 @@ codeunit 61005 "BCPT Create SQ with N Lines" implements "BCPT Test Param. Provid
 
     procedure GetDefaultParameters(): Text[1000]
     begin
-        exit(copystr(NoOfLinesParamLbl + '=' + Format(10), 1, 1000));
+        exit(CopyStr(NoOfLinesParamLbl + '=' + Format(10), 1, 1000));
     end;
 
     procedure ValidateParameters(Parameters: Text[1000])

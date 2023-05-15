@@ -6,7 +6,7 @@ codeunit 61007 "BCPT Detail Trial Bal. Report"
         TempBlob: Codeunit "Temp Blob";
         OutStr: OutStream;
     begin
-        TempBlob.CreateOutstream(OutStr);
+        TempBlob.CreateOutStream(OutStr);
         DetailTrialBal.SaveAs('', ReportFormat::Pdf, OutStr);
     end;
 }

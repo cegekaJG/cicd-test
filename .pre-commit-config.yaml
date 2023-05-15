@@ -18,9 +18,9 @@ repos:
     -   id: sort-simple-yaml
         stages: [pre-commit, pre-push] # Only triggered when pushing a commit to the remote
 -   repo: https://github.com/cegekaJG/AL-Pre-Commit-Hooks
-    rev: v0.2.0
+    rev: 20007559ff1644a868452820f6ef11e0f7aff3bc
     hooks:
     -   id: compile-al-app
         exclude: '\.github|\.AL-Go'
-        args: ['CICD Test App']
-        stages: [pre-push] # Only triggered when pushing a commit to the remote
+        args: ['CICD Test App', '-v']
+        stages: [pre-commit, pre-push] # Only triggered when pushing a commit to the remote

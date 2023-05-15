@@ -4,7 +4,7 @@ codeunit 61004 "BCPT Create SO with N Lines" implements "BCPT Test Param. Provid
 
     trigger OnRun();
     begin
-        If not IsInitialized then begin
+        if not IsInitialized then begin
             InitTest();
             IsInitialized := true;
         end;
@@ -18,16 +18,15 @@ codeunit 61004 "BCPT Create SO with N Lines" implements "BCPT Test Param. Provid
         NoOfLinesParamLbl: Label 'Lines';
         ParamValidationErr: Label 'Parameter is not defined in the correct format. The expected format is "%1"';
 
-
     local procedure InitTest();
     var
-        SalesSetup: Record "Sales & Receivables Setup";
         NoSeriesLine: Record "No. Series Line";
+        SalesSetup: Record "Sales & Receivables Setup";
     begin
         SalesSetup.Get();
         SalesSetup.TestField("Order Nos.");
         NoSeriesLine.SetRange("Series Code", SalesSetup."Order Nos.");
-        NoSeriesLine.findset(true, true);
+        NoSeriesLine.FindSet(true, true);
         repeat
             if NoSeriesLine."Ending No." <> '' then begin
                 NoSeriesLine."Ending No." := '';
@@ -35,12 +34,12 @@ codeunit 61004 "BCPT Create SO with N Lines" implements "BCPT Test Param. Provid
                 NoSeriesLine.Modify(true);
             end;
         until NoSeriesLine.Next() = 0;
-        commit();
+        Commit();
 
         if Evaluate(NoOfLinesToCreate, BCPTTestContext.GetParameter(NoOfLinesParamLbl)) then;
     end;
 
-    local procedure CreateSalesOrder(Var BCPTTestContext: Codeunit "BCPT Test Context")
+    local procedure CreateSalesOrder(var BCPTTestContext: Codeunit "BCPT Test Context")
     var
         Customer: Record Customer;
         Item: Record Item;
@@ -48,9 +47,9 @@ codeunit 61004 "BCPT Create SO with N Lines" implements "BCPT Test Param. Provid
         SalesLine: Record "Sales Line";
         i: Integer;
     begin
-        if not Customer.get('10000') then
+        if not Customer.Get('10000') then
             Customer.FindFirst();
-        if not item.get('70000') then
+        if not Item.Get('70000') then
             Item.FindSet();
         if NoOfLinesToCreate < 0 then
             NoOfLinesToCreate := 0;
@@ -98,7 +97,7 @@ codeunit 61004 "BCPT Create SO with N Lines" implements "BCPT Test Param. Provid
 
     procedure GetDefaultParameters(): Text[1000]
     begin
-        exit(copystr(NoOfLinesParamLbl + '=' + Format(10), 1, 1000));
+        exit(CopyStr(NoOfLinesParamLbl + '=' + Format(10), 1, 1000));
     end;
 
     procedure ValidateParameters(Parameters: Text[1000])

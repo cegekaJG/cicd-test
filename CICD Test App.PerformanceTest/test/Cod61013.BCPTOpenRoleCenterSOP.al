@@ -5,7 +5,7 @@ codeunit 61013 "BCPT Open RoleCenter SOP"
 
     trigger OnRun();
     var
-        SOPRC: testpage "SO Processor Activities";
+        SOPRC: TestPage "SO Processor Activities";
     begin
         SOPRC.OpenView();
         SOPRC.Close();
