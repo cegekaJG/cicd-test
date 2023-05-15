@@ -16,6 +16,7 @@ repos:
     -   id: trailing-whitespace
     -   id: mixed-line-ending
     -   id: sort-simple-yaml
+        stages: [pre-commit, pre-push] # Only triggered when pushing a commit to the remote
 -   repo: https://github.com/cegekaJG/AL-Pre-Commit-Hooks
     rev: v0.2.0
     hooks:
