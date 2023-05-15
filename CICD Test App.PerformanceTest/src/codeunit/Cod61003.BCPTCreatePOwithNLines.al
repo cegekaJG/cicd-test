@@ -4,7 +4,7 @@ codeunit 61003 "BCPT Create PO with N Lines" implements "BCPT Test Param. Provid
 
     trigger OnRun();
     begin
-        If not IsInitialized or true then begin
+        if not IsInitialized or true then begin
             InitTest();
             IsInitialized := true;
         end;
@@ -14,20 +14,19 @@ codeunit 61003 "BCPT Create PO with N Lines" implements "BCPT Test Param. Provid
     var
         BCPTTestContext: Codeunit "BCPT Test Context";
         IsInitialized: Boolean;
+        NoOfLinesToCreate: Integer;
         NoOfLinesParamLbl: Label 'Lines';
         ParamValidationErr: Label 'Parameter is not defined in the correct format. The expected format is "%1"';
-        NoOfLinesToCreate: Integer;
-
 
     local procedure InitTest();
     var
-        PurchaseSetup: Record "Purchases & Payables Setup";
         NoSeriesLine: Record "No. Series Line";
+        PurchaseSetup: Record "Purchases & Payables Setup";
     begin
         PurchaseSetup.Get();
         PurchaseSetup.TestField("Order Nos.");
         NoSeriesLine.SetRange("Series Code", PurchaseSetup."Order Nos.");
-        NoSeriesLine.findset(true, true);
+        NoSeriesLine.FindSet(true, true);
         repeat
             if NoSeriesLine."Ending No." <> '' then begin
                 NoSeriesLine."Ending No." := '';
@@ -35,29 +34,29 @@ codeunit 61003 "BCPT Create PO with N Lines" implements "BCPT Test Param. Provid
                 NoSeriesLine.Modify(true);
             end;
         until NoSeriesLine.Next() = 0;
-        commit();
+        Commit();
 
         if Evaluate(NoOfLinesToCreate, BCPTTestContext.GetParameter(NoOfLinesParamLbl)) then;
     end;
 
-    local procedure CreatePurchaseOrder(Var BCPTTestContext: Codeunit "BCPT Test Context")
+    local procedure CreatePurchaseOrder(var BCPTTestContext: Codeunit "BCPT Test Context")
     var
-        Vendor: Record Vendor;
         Item: Record Item;
         PurchaseHeader: Record "Purchase Header";
         PurchaseLine: Record "Purchase Line";
+        Vendor: Record Vendor;
         i: Integer;
     begin
-        if not Vendor.get('10000') then
+        if not Vendor.Get('10000') then
             Vendor.FindFirst();
-        if not Item.get('70000') then
+        if not Item.Get('70000') then
             Item.FindFirst();
         if NoOfLinesToCreate < 0 then
             NoOfLinesToCreate := 0;
         if NoOfLinesToCreate > 10000 then
             NoOfLinesToCreate := 10000;
         BCPTTestContext.StartScenario('Add Order');
-        PurchaseHeader.init();
+        PurchaseHeader.Init();
         PurchaseHeader."Document Type" := PurchaseHeader."Document Type"::Order;
         PurchaseHeader.Insert(true);
         BCPTTestContext.EndScenario('Add Order');
@@ -95,7 +94,7 @@ codeunit 61003 "BCPT Create PO with N Lines" implements "BCPT Test Param. Provid
 
     procedure GetDefaultParameters(): Text[1000]
     begin
-        exit(copystr(NoOfLinesParamLbl + '=' + Format(10), 1, 1000));
+        exit(CopyStr(NoOfLinesParamLbl + '=' + Format(10), 1, 1000));
     end;
 
     procedure ValidateParameters(Parameters: Text[1000])
