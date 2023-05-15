@@ -1,6 +1,5 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
-default_install_hook_types: [pre-commit, pre-push] # list every trigger relevant to this configuration
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
@@ -16,11 +15,9 @@ repos:
     -   id: trailing-whitespace
     -   id: mixed-line-ending
     -   id: sort-simple-yaml
-        stages: [pre-commit, pre-push] # Only triggered when pushing a commit to the remote
 -   repo: https://github.com/cegekaJG/AL-Pre-Commit-Hooks
     rev: 20007559ff1644a868452820f6ef11e0f7aff3bc
     hooks:
     -   id: compile-al-app
         exclude: '\.github|\.AL-Go'
         args: ['CICD Test App', '-v']
-        stages: [pre-commit, pre-push] # Only triggered when pushing a commit to the remote
